@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import main
+  File "C:\Users\hacki\OneDrive\Desktop\Wealthsense AI\wealthsense-ai\backend\main.py", line 4, in <module>
+    from services.claude_service import generate_health_score, analyze_portfolio, generate_fire_plan, analyze_tax, generate_life_event_plan
+ImportError: cannot import name 'generate_fire_plan' from 'services.claude_service' (C:\Users\hacki\OneDrive\Desktop\Wealthsense AI\wealthsense-ai\backend\services\claude_service.py)

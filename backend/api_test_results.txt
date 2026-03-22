@@ -1,0 +1,6 @@
+SUCCESS: 200 http://127.0.0.1:8001/api/health
+SUCCESS: 200 http://127.0.0.1:8001/api/health-score
+SUCCESS: 200 http://127.0.0.1:8001/api/portfolio-xray
+SUCCESS: 200 http://127.0.0.1:8001/api/fire-plan
+SUCCESS: 200 http://127.0.0.1:8001/api/tax-wizard
+SUCCESS: 200 http://127.0.0.1:8001/api/life-event

@@ -1,0 +1,367 @@
+
+--- Testing http://127.0.0.1:8000/api/health ---
+Status: 200
+{
+  "status": "ok"
+}
+
+--- Testing http://127.0.0.1:8000/api/health-score ---
+Status: 200
+{
+  "overall_score": 57,
+  "grade": "C",
+  "headline": "Your finances show good debt management, but urgent attention is needed for insurance and retirement planning.",
+  "dimensions": {
+    "emergency_fund": {
+      "score": 50,
+      "status": "fair",
+      "one_line_insight": "Your emergency fund covers 3 months of expenses, which is half of the recommended 6 months.",
+      "top_action": "Increase your emergency fund by INR 150,000 to cover 6 months of expenses."
+    },
+    "insurance": {
+      "score": 35,
+      "status": "poor",
+      "one_line_insight": "Your health cover is insufficient for major medical expenses, and term life cover is below recommended levels.",
+      "top_action": "Increase health insurance to at least INR 10-15 lakhs and term life cover to INR 1.5-1.8 Crores."
+    },
+    "investment_diversification": {
+      "score": 65,
+      "status": "fair",
+      "one_line_insight": "While your equity and debt allocation is appropriate for your age, adding a small allocation to gold can enhance diversification.",
+      "top_action": "Consider allocating 5-10% of your new investments towards gold ETFs or SGBs for better diversification."
+    },
+    "debt_health": {
+      "score": 100,
+      "status": "excellent",
+      "one_line_insight": "You have no active loans, reflecting excellent financial discipline and freedom.",
+      "top_action": "Maintain your debt-free status and continue to prioritize investments over unnecessary liabilities."
+    },
+    "tax_efficiency": {
+      "score": 70,
+      "status": "good",
+      "one_line_insight": "You are utilizing 80C and 80D benefits, but missing out on additional tax savings from NPS.",
+      "top_action": "Consider investing INR 50,000 annually in NPS to benefit from the additional deduction under 80CCD(1B)."
+    },
+    "retirement_readiness": {
+      "score": 30,
+      "status": "poor",
+      "one_line_insight": "Your current monthly investments are significantly insufficient to build a comfortable retirement corpus by age 60.",
+      "top_action": "Drastically increase your monthly SIPs for retirement to at least INR 65,000-70,000, assuming a 10% annual increase."
+    }
+  },
+  "top_3_priorities": [
+    "Increase health insurance to INR 10-15 lakhs and term life cover to INR 1.5-1.8 Crores.",
+    "Drastically increase monthly investments for retirement to at least INR 65,000-70,000.",
+    "Build up your emergency fund to 6 months of expenses (INR 300,000 total)."
+  ],
+  "personalized_message": "Your dedication to staying debt-free and initiating investments at 30 is commendable. However, enhancing your insurance coverage and significantly boosting your retirement savings will be pivotal in building a truly secure financial future."
+}
+
+--- Testing http://127.0.0.1:8000/api/portfolio-xray ---
+Status: 200
+{
+  "xirr": 14.2,
+  "benchmark_xirr": 12.1,
+  "alpha": 2.1,
+  "total_invested": 100000,
+  "current_value": 136000,
+  "absolute_return_pct": 36,
+  "portfolio_health_score": 72,
+  "funds": [
+    {
+      "name": "Axis Bluechip Fund - Direct Plan - Growth",
+      "category": "Large Cap",
+      "invested": 50000,
+      "current_value": 65000,
+      "xirr": 13.0,
+      "expense_ratio": 0.7,
+      "overlap_with": [],
+      "recommendation": "hold"
+    },
+    {
+      "name": "SBI Small Cap Fund",
+      "category": "Small Cap",
+      "invested": 50000,
+      "current_value": 71000,
+      "xirr": 16.0,
+      "expense_ratio": 0.9,
+      "overlap_with": [],
+      "recommendation": "hold"
+    }
+  ],
+  "issues": [
+    {
+      "type": "overlap",
+      "severity": "medium",
+      "description": "The portfolio has a 35% overlap score, indicating some common holdings or similar investment styles across funds, potentially leading to sub-optimal diversification.",
+      "action": "Review the detailed portfolio holdings to identify common stocks and consider reducing exposure to funds with significant overlaps if they don't offer distinct advantages."
+    },
+    {
+      "type": "expense_drag",
+      "severity": "low",
+      "description": "The weighted average expense ratio of the portfolio (approx. 0.8%) is slightly higher than the category averages (Large Cap Direct ~0.5%, Small Cap Direct ~0.7%) for similar direct plans, indicating a minor drag on returns.",
+      "action": "While current expense ratios are reasonable for direct plans, regularly monitor them and consider funds with lower expense ratios if performance is comparable without compromising quality."
+    },
+    {
+      "type": "diversification",
+      "severity": "high",
+      "description": "The portfolio is highly concentrated in only two equity funds (one Large Cap and one Small Cap), lacking diversification across market capitalization (e.g., Mid Cap) and potentially other asset classes or themes.",
+      "action": "Consider adding a well-managed Mid Cap fund or a Flexi-Cap fund to improve market cap diversification. Explore options for debt allocation if not covered elsewhere in the investor's overall financial plan."
+    }
+  ],
+  "rebalancing_plan": [
+    {
+      "action": "sell",
+      "fund": "SBI Small Cap Fund",
+      "amount": 15000,
+      "reason": "To reduce current over-concentration in the volatile small-cap equity segment and reallocate for better market cap diversification.",
+      "move_to": "HDFC Mid-Cap Opportunities Fund - Direct Plan - Growth"
+    },
+    {
+      "action": "increase_sip",
+      "fund": "Axis Bluechip Fund - Direct Plan - Growth",
+      "from": 2000,
+      "to": 3000,
+      "reason": "Reinforce stable large-cap exposure, providing a solid foundation and consistent returns for the portfolio."
+    },
+    {
+      "action": "increase_sip",
+      "fund": "HDFC Mid-Cap Opportunities Fund - Direct Plan - Growth",
+      "from": 0,
+      "to": 4000,
+      "reason": "Initiate systematic investment in a mid-cap fund to address the current market cap gap and enhance diversification, complementing the lump sum reinvestment."
+    }
+  ],
+  "summary": "The portfolio shows strong alpha over the Nifty 50 TRI benchmark but is highly concentrated in two equity funds, posing diversification risks. While performance is good and overlap is moderate, introducing mid-cap exposure and balancing market cap allocation is crucial. Rebalancing efforts should focus on de-risking the small-cap segment and building a more robust, diversified equity core."
+}
+
+--- Testing http://127.0.0.1:8000/api/fire-plan ---
+Status: 200
+{
+  "retirement_age": 45,
+  "years_to_fire": 15,
+  "monthly_surplus": 50000,
+  "retirement_corpus_needed": 3.6,
+  "corpus_unit": "crores",
+  "current_trajectory_corpus": 1.11,
+  "gap": 2.49,
+  "monthly_sip_needed": 70000,
+  "current_sip": 20000,
+  "sip_gap": 50000,
+  "immediate_actions": [
+    {
+      "month": 1,
+      "action": "Set aside \u20b93,00,000 from current savings for an Emergency Fund in a liquid instrument (e.g., high-yield savings account or short-term FD).",
+      "amount": 300000,
+      "category": "emergency"
+    },
+    {
+      "month": 1,
+      "action": "Invest the remaining \u20b92,00,000 from current savings as a lump sum into a Nifty 50 Index Fund (e.g., UTI Nifty 50 Index Fund or HDFC Index Fund - Nifty 50 Plan).",
+      "amount": 200000,
+      "category": "investment"
+    },
+    {
+      "month": 1,
+      "action": "Purchase a \u20b91 Crore Term Life Insurance plan for future financial security. Opt for a plan with level premium and suitable term.",
+      "amount": 12000,
+      "category": "insurance"
+    },
+    {
+      "month": 1,
+      "action": "Initiate a new monthly SIP of \u20b94,167 in NPS Tier 1 (Equity-heavy scheme, e.g., Fund E) to utilize the additional \u20b950,000 deduction under 80CCD(1B).",
+      "amount": 4167,
+      "category": "investment"
+    },
+    {
+      "month": 1,
+      "action": "Initiate a new monthly SIP of \u20b98,333 in an ELSS fund (e.g., Parag Parikh ELSS Tax Saver Fund or Mirae Asset Tax Saver Fund) to fully utilize the 80C limit (\u20b91,00,000 annually, assuming no other 80C deductions).",
+      "amount": 8333,
+      "category": "investment"
+    },
+    {
+      "month": 1,
+      "action": "Initiate an additional monthly SIP of \u20b917,500 in a Nifty Next 50 Index Fund (e.g., UTI Nifty Next 50 Index Fund or HDFC Index Fund - Nifty Next 50 Plan) for broader equity market exposure and growth potential.",
+      "amount": 17500,
+      "category": "investment"
+    },
+    {
+      "month": 2,
+      "action": "Review and ensure all SIPs and insurance policies from Month 1 are active. Continue regular monthly investments as planned.",
+      "amount": 0,
+      "category": "review"
+    },
+    {
+      "month": 6,
+      "action": "Conduct a mid-year review of expenses and income. Look for opportunities to further reduce expenses or increase income to bridge the remaining SIP gap.",
+      "amount": 0,
+      "category": "review"
+    },
+    {
+      "month": 12,
+      "action": "Perform an annual financial review. Re-evaluate investment performance, adjust SIPs if income/expenses change, and plan for tax-saving investments for the next financial year.",
+      "amount": 0,
+      "category": "review"
+    }
+  ],
+  "sip_allocation": [
+    {
+      "instrument": "NPS Tier 1 (Equity-heavy)",
+      "monthly_amount": 4167,
+      "goal": "retirement",
+      "reason": "Tax benefit under 80CCD(1B), long-term retirement planning."
+    },
+    {
+      "instrument": "ELSS Fund",
+      "monthly_amount": 8333,
+      "goal": "retirement",
+      "reason": "Tax benefit under 80C, equity exposure with a 3-year lock-in."
+    },
+    {
+      "instrument": "Nifty 50 Index Fund (Existing SIP or New)",
+      "monthly_amount": 20000,
+      "goal": "retirement",
+      "reason": "Core equity exposure, tracks large-cap performance efficiently."
+    },
+    {
+      "instrument": "Nifty Next 50 Index Fund",
+      "monthly_amount": 17500,
+      "goal": "retirement",
+      "reason": "Diversification beyond top 50, exposure to emerging large-cap companies."
+    }
+  ],
+  "yearly_milestones": [
+    {
+      "year": 1,
+      "age": 31,
+      "corpus_target": 860000,
+      "key_milestone": "Emergency fund fully established, essential insurance in place, and investing aligned with tax efficiency."
+    },
+    {
+      "year": 5,
+      "age": 35,
+      "corpus_target": 4440000,
+      "key_milestone": "Significant progress towards retirement corpus. Consider re-evaluating risk appetite and asset allocation."
+    },
+    {
+      "year": 10,
+      "age": 40,
+      "corpus_target": 12100000,
+      "key_milestone": "Crossed \u20b91 Crore mark. Evaluate potential for accelerated savings by increasing income or further optimizing expenses."
+    },
+    {
+      "year": 15,
+      "age": 45,
+      "corpus_target": 26100000,
+      "key_milestone": "Target retirement age reached. Review corpus against needs, plan for withdrawal strategy and post-retirement expenses."
+    }
+  ],
+  "insurance_gaps": [
+    {
+      "type": "term life",
+      "recommended_cover": 10000000,
+      "current_cover": 0,
+      "action": "Buy \u20b91 crore term plan immediately, consider a rider for critical illness."
+    }
+  ],
+  "fire_summary": "Your journey to Financial Independence and Retire Early (FIRE) at age 45 is ambitious but achievable! By streamlining your current savings into an emergency fund and initial investments, along with optimizing your monthly SIPs for tax benefits and market exposure, you're building a strong foundation. While your current surplus allows for a significant increase in investments, there's still a gap of \u20b920,000 in your monthly SIP capacity to fully meet your goal. Focus on increasing your income or further reducing expenses to bridge this gap, and regular reviews will keep you on track to enjoy an early, financially secure retirement."
+}
+
+--- Testing http://127.0.0.1:8000/api/tax-wizard ---
+Status: 200
+{
+  "gross_salary": 1800000,
+  "old_regime_tax": 304200,
+  "new_regime_tax": 234000,
+  "recommended_regime": "Old Regime (after optimizing deductions)",
+  "total_extra_savings_possible": 62400,
+  "missed_deductions": [
+    {
+      "section": "80D Health Insurance",
+      "amount_missed": 25000,
+      "potential_tax_saved": 7800,
+      "action": "Buy medical insurance for self/family (up to 25,000) or parents (additional 50,000)"
+    },
+    {
+      "section": "80CCD(1B) NPS Contribution",
+      "amount_missed": 50000,
+      "potential_tax_saved": 15600,
+      "action": "Invest in National Pension System (NPS) Tier-1 account"
+    },
+    {
+      "section": "HRA Exemption",
+      "amount_missed": 150000,
+      "potential_tax_saved": 46800,
+      "action": "If renting, declare HRA from employer and submit rent receipts (estimated potential exemption)"
+    },
+    {
+      "section": "24(b) Home Loan Interest",
+      "amount_missed": 200000,
+      "potential_tax_saved": 62400,
+      "action": "Consider taking a home loan for a self-occupied property to claim interest deduction (up to 2,00,000)"
+    }
+  ],
+  "salary_restructuring": [
+    {
+      "component": "Food Coupons",
+      "suggested_amount": 26400,
+      "reason": "Tax free up to Rs. 50 per meal per day for 2 meals/day, 22 days/month"
+    }
+  ],
+  "tax_summary": "Your current gross salary is Rs. 18,00,000. Under the Old Regime with existing 80C and standard deduction, your tax liability is Rs. 3,04,200. Under the New Regime (FY 2023-24), your tax liability is Rs. 2,34,000. The New Regime is initially more beneficial by Rs. 70,200. However, by strategically utilizing additional deductions and exemptions such as 80D, 80CCD(1B), HRA, and 24(b) (totaling Rs. 4,25,000 in potential deductions), your tax under the Old Regime can be reduced to Rs. 1,71,600. This makes the Old Regime, when fully optimized, the significantly more beneficial option, offering an additional saving of Rs. 62,400 compared to the New Regime. It is highly recommended to explore these deductions to minimize your tax outflow."
+}
+
+--- Testing http://127.0.0.1:8000/api/life-event ---
+Status: 200
+{
+  "event_type": "bonus",
+  "event_summary": "Congratulations on this significant bonus! Let's build a robust blueprint to maximize its impact on your financial future and accelerate your goals.",
+  "timeline": [
+    {
+      "week": 1,
+      "step": "Review and fortify Emergency Fund: Ensure 6-12 months of living expenses are readily available in a high-yield savings account. Address any high-interest debt immediately.",
+      "priority": "high"
+    },
+    {
+      "week": 2,
+      "step": "Strategic Investment Planning: Consult with your financial advisor to outline a detailed plan for long-term growth, aligning with your 'moderate' risk appetite and age 30 horizon.",
+      "priority": "high"
+    },
+    {
+      "month": 1,
+      "step": "Execute Investment Allocation: Implement the agreed-upon investment strategy, focusing on diversified assets like low-cost index funds or ETFs.",
+      "priority": "high"
+    }
+  ],
+  "allocation": [
+    {
+      "category": "Emergency Fund Boost / High-Interest Debt Payoff",
+      "amount": 10000,
+      "percentage": 10
+    },
+    {
+      "category": "Long-Term Growth Investments",
+      "amount": 85000,
+      "percentage": 85
+    },
+    {
+      "category": "Discretionary Spending / Personal Reward",
+      "amount": 5000,
+      "percentage": 5
+    }
+  ],
+  "what_not_to_do": [
+    {
+      "mistake": "Avoid 'lifestyle creep': Resist the urge for significant, immediate lifestyle upgrades (e.g., new luxury car, lavish holidays).",
+      "reason": "Rapid increases in spending can erode the long-term benefits of your bonus and make it harder to sustain your financial progress."
+    },
+    {
+      "mistake": "Don't make impulsive, untargeted investments: Avoid 'hot tips' or speculative ventures without thorough research and alignment with your financial plan.",
+      "reason": "Your moderate risk appetite calls for strategic, diversified investments, not high-risk gambles that could jeopardize your capital."
+    }
+  ],
+  "long_term_impact": {
+    "corpus_added_in_10_years": 265000,
+    "description": "If the $85,000 allocated to long-term investments grows at an average annual rate of 12% (a robust target for a diversified, moderate-risk portfolio over a decade), this single bonus could add approximately $265,000 to your net worth in 10 years, significantly boosting your future wealth."
+  }
+}

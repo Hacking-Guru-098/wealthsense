@@ -1,0 +1,21 @@
+
+--- Testing http://127.0.0.1:8001/api/health ---
+Status: 200
+{
+  "status": "ok"
+}
+
+--- Testing http://127.0.0.1:8001/api/health-score ---
+Request failed: HTTPConnectionPool(host='127.0.0.1', port=8001): Read timed out. (read timeout=15)
+
+--- Testing http://127.0.0.1:8001/api/portfolio-xray ---
+Request failed: HTTPConnectionPool(host='127.0.0.1', port=8001): Read timed out. (read timeout=15)
+
+--- Testing http://127.0.0.1:8001/api/fire-plan ---
+Request failed: HTTPConnectionPool(host='127.0.0.1', port=8001): Read timed out. (read timeout=15)
+
+--- Testing http://127.0.0.1:8001/api/tax-wizard ---
+Request failed: HTTPConnectionPool(host='127.0.0.1', port=8001): Read timed out. (read timeout=15)
+
+--- Testing http://127.0.0.1:8001/api/life-event ---
+Request failed: HTTPConnectionPool(host='127.0.0.1', port=8001): Read timed out. (read timeout=15)
