@@ -35,7 +35,8 @@ export default function HealthScore() {
 
   const submitForm = async () => {
     setLoading(true);
-      setError(null);
+    setError(null);
+    try {
       const res = await axios.post('http://localhost:8000/api/health-score', formData);
       if (res.data.error) {
          setError("AI analysis failed. Our servers might be overloaded.");
@@ -43,9 +44,7 @@ export default function HealthScore() {
       }
       setResult(res.data);
       updateProfile({
-        age: formData.age,
-        monthly_income: formData.monthly_income,
-        monthly_expenses: formData.monthly_expenses,
+        ...formData,
         health_score: res.data.overall_score,
         health_score_dimensions: res.data.dimensions,
         has_completed_onboarding: true

@@ -5,13 +5,34 @@ import FileUpload from '../components/FileUpload';
 import LoadingAI from '../components/LoadingAI';
 import { formatINR } from '../utils/formatters';
 import { Calculator, ChevronLeft, ChevronRight, Scale, CheckCircle2, TrendingDown, PiggyBank } from 'lucide-react';
+import { useUser } from '../context/UserContext';
 
 export default function TaxWizard() {
+  const { profile } = useUser();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [showManual, setShowManual] = useState(false);
   const [manualText, setManualText] = useState("");
+
+  React.useEffect(() => {
+    if (profile && profile.has_completed_onboarding && !manualText) {
+       const income = (profile.monthly_income || 0) * 12;
+       const c80 = profile.invests_in_80c ? 150000 : 0;
+       const nps = profile.invests_in_nps ? 50000 : 0;
+       const h80d = profile.has_health_insurance_80d ? 25000 : 0;
+       
+       if (income > 0) {
+           setManualText(JSON.stringify({
+               income: income,
+               "80c_investments": c80,
+               "80ccd1b_nps": nps,
+               "80d_health": h80d,
+               rent_paid_monthly: 0
+           }, null, 2));
+       }
+    }
+  }, [profile, manualText]);
 
   const handleFileUpload = async (file) => {
     if (!file) return;

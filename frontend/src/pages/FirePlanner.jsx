@@ -22,12 +22,14 @@ export default function FirePlanner() {
   });
 
   useEffect(() => {
-    if (profile.has_completed_onboarding) {
+    if (profile && profile.has_completed_onboarding) {
       setFormData(prev => ({
         ...prev,
         age: profile.age || '',
         monthly_income: profile.monthly_income || '',
-        monthly_expenses: profile.monthly_expenses || ''
+        monthly_expenses: profile.monthly_expenses || '',
+        monthly_sip: profile.monthly_sip || '',
+        home_loan_emi: profile.emi_total || 0,
       }));
     }
   }, [profile]);
